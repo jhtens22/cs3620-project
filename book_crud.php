@@ -20,7 +20,7 @@ $insert_book = "INSERT INTO books (bookid, booktitle, bookauthor)
 VALUES (1, 'Paper Towns', 'John Green')";
 
 if ($conn->query($insert_book) === TRUE) {
-  echo "New record created successfully";
+  echo "New record created successfully <br>";
 } else {
   echo "Error: " . $insert_book . "<br>" . $conn->error;
 }
@@ -40,7 +40,7 @@ if ($show_book->num_rows > 0) {
 $delete_book = "DELETE FROM books WHERE bookid=1";
 
 if ($conn->query($delete_book) === TRUE) {
-  echo "Record deleted successfully";
+  echo "Record deleted successfully <br>";
 } else {
   echo "Error deleting record: " . $conn->error;
 }
