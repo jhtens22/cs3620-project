@@ -30,14 +30,14 @@ $show_book = $conn->query($get_book);
 
 if ($show_book->num_rows > 0) {
   // output data of each row
-  while($row = $result->fetch_assoc()) {
+  while($row = $show_book->fetch_assoc()) {
     echo "id: " . $row["bookid"]. " - Title: " . $row["booktitle"]. " - Author: " . $row["bookauthor"]. "<br>";
   }
 } else {
   echo "0 results";
 }
 
-$delete_book = "DELETE FROM books WHERE id=1";
+$delete_book = "DELETE FROM books WHERE bookid=1";
 
 if ($conn->query($delete_book) === TRUE) {
   echo "Record deleted successfully";
