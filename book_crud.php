@@ -25,7 +25,7 @@ if ($conn->query($insert_book) === TRUE) {
   echo "Error: " . $insert_book . "<br>" . $conn->error;
 }
 
-$get_book = "SELECT id, booktitle, bookauthor FROM books";
+$get_book = "SELECT bookid, booktitle, bookauthor FROM books";
 $show_book = $conn->query($get_book);
 
 if ($show_book->num_rows > 0) {
