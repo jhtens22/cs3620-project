@@ -9,6 +9,10 @@
     $user->getUser(1);
 
     echo $user->getUsername();
+    echo "<br />";
+    echo $user->getFirstName();
+    echo "<br />";
+    echo $user->getLastName();
 ?>
 
 <?php 
