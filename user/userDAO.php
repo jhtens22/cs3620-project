@@ -53,7 +53,11 @@ error_reporting(E_ALL);
             require_once('./utilities/connection.php');
             
             $sql = "DELETE FROM user WHERE username = '" . $un . "';";
-            $result = $conn->query($sql);
+            if ($conn->query($sql) === TRUE) {
+              echo "user deleted";
+            } else {
+              echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         
             $conn->close();
 
