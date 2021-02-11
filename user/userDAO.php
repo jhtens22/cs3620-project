@@ -1,6 +1,7 @@
 <?php
     class UserDAO {
         function getUser($user){
+          session_start();
           require_once('./utilities/connection.php');
           
           $sql = "SELECT first_name, last_name, username, user_id FROM user WHERE user_id =" . $user->getUserId();
@@ -21,7 +22,7 @@
         }
 
         function createUser($user){
-            
+            session_start();
             require_once('./utilities/connection.php');
             
             $sql = "INSERT INTO user
@@ -45,6 +46,7 @@
           }
 
           function deleteUser($un){
+            session_start();
             require_once('./utilities/connection.php');
             
             $sql = "DELETE FROM user WHERE username = '" . $un . "';";

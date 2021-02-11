@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 $servername = "cs3620-jaythan.mysql.database.azure.com";
 
