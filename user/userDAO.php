@@ -1,7 +1,6 @@
 <?php
     class UserDAO {
         function getUser($user){
-          session_start();
           require_once('./utilities/connection.php');
           
           $sql = "SELECT first_name, last_name, username, user_id FROM user WHERE user_id =" . $user->getUserId();
