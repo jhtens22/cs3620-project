@@ -60,7 +60,5 @@ error_reporting(E_ALL);
             }
         
             $conn->close();
-
-            echo "user deleted";
           }
       }
