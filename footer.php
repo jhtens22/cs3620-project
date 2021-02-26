@@ -1,1 +1,1 @@
-<h1>This is the footer</h1>
+<h3>Copyright by Jaythan Hew</h3>

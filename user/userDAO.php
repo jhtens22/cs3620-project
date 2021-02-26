@@ -23,29 +23,45 @@ error_reporting(E_ALL);
           $conn->close();
         }
 
-        function createUser($user){
-            session_start();
-            require_once('./utilities/connection.php');
-            
-            $sql = "INSERT INTO user
-            (
-            `username`,
-            `password`,
-            `firstName`,
-            `lastName`)
-            VALUES
-            ('" . $user->getUsername() . "',
-            '" . $user->getPassword() . "',
-            '" . $user->getFirstName() . "',
-            '" . $user->getLastName() . "'
-            );";
-            if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-              } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-              }
-            $conn->close();
+        function checkLogin($passedinusername, $passedinpassword){
+          require_once('./utilities/connection.php');
+          $user_id = 0;
+          $sql = "SELECT user_id FROM user WHERE username = '" . $passedinusername . "' AND password = '" . hash("sha256", trim($passedinpassword)) . "'";
+      
+          $result = $conn->query($sql);
+      
+          if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+              $user_id = $row["user_id"];
+            }
           }
+          else {
+              echo "0 results";
+          }
+          $conn->close();
+          return $user_id;
+        }
+
+        function createUser($user){
+          require_once('./utilities/connection.php');
+      
+          // prepare and bind
+          $stmt = $conn->prepare("INSERT INTO cs3620_proj.user (`username`,
+          `password`,
+          `firstName`,
+          `lastName`) VALUES (?, ?, ?, ?)");
+      
+          $un = $user->getUsername();
+          $pw = $user->getPassword();
+          $fn = $user->getFirstName();
+          $ln = $user->getLastName();
+      
+          $stmt->bind_param("ssss", $un, $pw, $fn, $ln);
+          $stmt->execute();
+      
+          $stmt->close();
+          $conn->close();
+        }
 
           function deleteUser($un){
             session_start();

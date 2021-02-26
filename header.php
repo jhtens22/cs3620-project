@@ -6,6 +6,6 @@ error_reporting(E_ALL);
 
 ?>
 
-<h1>
-This is the header
+<h1 class="text-center text-primary">
+My Book List
 </h1>
