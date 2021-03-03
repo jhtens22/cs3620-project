@@ -46,7 +46,7 @@ error_reporting(E_ALL);
           require_once('./utilities/connection.php');
       
           // prepare and bind
-          $stmt = $conn->prepare("INSERT INTO cs3620_proj.user (`username`,
+          $stmt = $conn->prepare("INSERT INTO `cs3620-project`.`user` (`username`,
           `password`,
           `firstName`,
           `lastName`) VALUES (?, ?, ?, ?)");

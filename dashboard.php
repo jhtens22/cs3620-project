@@ -1,4 +1,5 @@
-<?php require_once("sessioncheck.php") ?>
+<?php require_once("sessioncheck.php"); ?>
+
 
 I am protected
 
