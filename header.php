@@ -7,5 +7,5 @@ error_reporting(E_ALL);
 ?>
 
 <h1 class="text-center text-primary">
-My Book List
+My Show List
 </h1>

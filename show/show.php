@@ -9,56 +9,46 @@ class Show implements \JsonSerializable {
 
     function __construct() {
     }
-    function getUsername(){
-        return $this->username;
+    function getShowName(){
+        return $this->showName;
     }
-    function setUsername($username){
-        $this->username = $username;
+    function setShowName($showName){
+        $this->showName = $showName;
     }
-    function getUserId(){
-        return $this->user_id;
+    function getShowId(){
+        return $this->show_id;
     }
-    function setUserId($user_id){
-        $this->user_id = $user_id;
+    function setShowId($show_id){
+        $this->user_id = $show_id;
     }
-    function getFirstName() {
-        return $this->firstName;
+    function getShowDescription() {
+        return $this->showDescription;
     }
-    function setFirstName($firstName){
-        $this->firstName = $firstName;
+    function setShowDescription($showDescription){
+        $this->showDescription = $showDescription;
     }
-    function getLastName() {
-        return $this->lastName;
+    function getShowRating() {
+        return $this->showRating;
     }
-    function setLastName($lastName){
-        $this->lastName = $lastName;
-    }
-    function setPassword($password){
-        $this->password = hash("sha256", $password);
-    }
-    function getPassword(){
-         return $this->password;
+    function setShowRating($showRating){
+        $this->showRating = $showRating;
     }
 
-    function getUser($user_id){
-        $this->user_id = $user_id;
-        $userDAO = new userDAO();
-        $userDAO->getUser($this);
+    function getShow($show_id){
+        $this->show_id = $show_id;
+        $showDAO = new showDAO();
+        $showDAO->getShow($this);
         return $this;
     }
 
-    function createUser(){
-        $userDAO = new userDAO();
-        $userDAO->createUser($this);
-    }
-    function deleteUser($username){
-        $userDAO = new userDAO();
-        $userDAO->deleteUser($username);
+    function getAllShows(){
+        $showDAO = new showDAO();
+        $showDAO->getAllShows();
     }
 
-    function checkLogin($username, $password){
-        $userDAO = new userDAO();
-        return $userDAO->checkLogin($username, $password);
+    function createShow(){
+        $showDAO = new showDAO();
+        $showDAO->createShow($this);
     }
 
     function jsonSerialize(){

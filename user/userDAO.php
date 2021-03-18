@@ -12,11 +12,11 @@ error_reporting(E_ALL);
             
           if ($result->num_rows > 0) {
           // output data of each row
-          while($row = $result->fetch_assoc()) {
-              $user->setFirstName($row["firstName"]);
-              $user->setLastName($row["lastName"]);
-              $user->setUsername($row["username"]);
-          }
+            while($row = $result->fetch_assoc()) {
+                $user->setFirstName($row["firstName"]);
+                $user->setLastName($row["lastName"]);
+                $user->setUsername($row["username"]);
+            }
           } else {
               echo "0 results";
           }
