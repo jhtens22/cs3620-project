@@ -43,7 +43,7 @@ class Show implements \JsonSerializable {
 
     function getAllShows(){
         $showDAO = new showDAO();
-        $showDAO->getAllShows();
+        return $showDAO->getAllShows();
     }
 
     function createShow(){
