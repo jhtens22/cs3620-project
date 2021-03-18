@@ -15,7 +15,7 @@
     require_once('./show/show.php');
 
     $show = new show();
-    $shows = $show->getAllShows();  
+    $shows = $show->getMyShows($_SESSION["user_id"]);  
 
     $arrlength = count($shows);
 

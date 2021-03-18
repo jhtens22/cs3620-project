@@ -19,7 +19,7 @@ class Show implements \JsonSerializable {
         return $this->show_id;
     }
     function setShowId($show_id){
-        $this->user_id = $show_id;
+        $this->show_id = $show_id;
     }
     function getShowDescription() {
         return $this->showDescription;
@@ -34,16 +34,9 @@ class Show implements \JsonSerializable {
         $this->showRating = $showRating;
     }
 
-    function getShow($show_id){
-        $this->show_id = $show_id;
+    function getMyShows($user_id){
         $showDAO = new showDAO();
-        $showDAO->getShow($this);
-        return $this;
-    }
-
-    function getAllShows(){
-        $showDAO = new showDAO();
-        return $showDAO->getAllShows();
+        return $showDAO->getShowsByUserId($user_id);
     }
 
     function createShow(){
