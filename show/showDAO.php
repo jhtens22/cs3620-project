@@ -34,10 +34,10 @@ class ShowDAO {
         require_once('./utilities/connection.php');
         require_once('./show/show.php');
 
-        $sql = "SELECT showName, showDescription, showRating, show_id FROM `show` WHERE `user_id`=" . $user_id;
+        $sql = "SELECT show_id, showName, showDescription, showRating FROM `show` WHERE user_id= " . $user_id;
         $result = $conn->query($sql);
 
-        $shows;
+        $shows = [];
         $index = 0;
         
         if ($result->num_rows > 0) {
@@ -52,8 +52,6 @@ class ShowDAO {
                 $shows[$index] = $show;
                 $index++;
             }
-        } else {
-            echo "0 results";
         }
         $conn->close();
 
@@ -66,16 +64,30 @@ class ShowDAO {
         // prepare and bind
         $stmt = $conn->prepare("INSERT INTO `cs3620-project`.`show` (`showName`,
         `showDescription`,
-        `showRating`) VALUES (?, ?, ?)");
+        `showRating`, `user_id`) VALUES (?, ?, ?,?)");
     
         $sn = $show->getShowName();
         $sd = $show->getShowDescription();
         $sr = $show->getShowRating();
+        $ui = $show->getUserId();
     
-        $stmt->bind_param("sss", $sn, $sd, $sr);
+        $stmt->bind_param("sssi", $sn, $sd, $sr, $ui);
         $stmt->execute();
     
         $stmt->close();
+        $conn->close();
+      }
+
+      function deleteShow($uid, $sid){
+        require_once('./utilities/connection.php');
+        
+        $sql = "DELETE FROM `cs3620-project`.`show` WHERE `user_id` = " . $uid . " AND show_id = " . $sid . ";";
+        if ($conn->query($sql) === TRUE) {
+          echo "show deleted";
+        } else {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    
         $conn->close();
       }
 }
