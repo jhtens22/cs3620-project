@@ -71,7 +71,7 @@ class ShowDAO {
         $sr = $show->getShowRating();
         $ui = $show->getUserId();
     
-        $stmt->bind_param("sssi", $sn, $sd, $sr, $ui);
+        $stmt->bind_param("ssii", $sn, $sd, $sr, $ui);
         $stmt->execute();
     
         $stmt->close();
